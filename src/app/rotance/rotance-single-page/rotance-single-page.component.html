@@ -1,0 +1,55 @@
+
+<ion-header *ngIf="r">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Rotance {{ b.name }} du {{ r.date |dateFr:'full'}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="r">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col sizeLg="8">
+        <ion-grid>
+          <ion-row class="ion-justify-content-center" color="medium">
+            <ion-col sizeLg="6">
+              <p>Date de création: {{ r.getCreationdate() | dateFr:'full'}}</p>
+            </ion-col>
+            <ion-col sizeLg="6">
+              <p>Date de mise à jour: {{ r.getUpdateDate() | dateFr:'full'}}</p>
+            </ion-col>
+          </ion-row>
+          <hr class="inside">
+          <ion-row class="ion-justify-content-center">
+            <ion-col sizeLg="6">
+              <p>Lieu : {{ r.lieu }}</p>
+            </ion-col>
+            <ion-col sizeLg="6">
+              <p>Date : {{ r.date | dateFr:'full'}}</p>
+            </ion-col>
+          </ion-row>
+          <hr class="inside">
+          <ion-row class="ion-justify-content-center">
+            <ion-col sizeLg="6">
+              <h3>Commencé : {{ r.commencer | booleanFr}}</h3>
+            </ion-col>
+            <ion-col sizeLg="6">
+              <h3>Fini : {{ r.fini | booleanFr}}</h3>
+            </ion-col>
+          </ion-row>
+          <hr class="inside">
+          <ion-row class="ion-justify-content-center">
+            <ion-col sizeLg="12">
+              <h3>Information:</h3>
+              <p *ngIf="r.info && r.info.length>0" >{{ r.info }}</p>
+              <p *ngIf="!r.info || r.info.length<1">Il n'y a pas d'information</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

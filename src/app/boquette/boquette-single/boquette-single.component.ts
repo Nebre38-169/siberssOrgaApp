@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ViewWillEnter } from '@ionic/angular';
 import { Boquette } from 'src/app/class/boquette/boquette';
 import { Rotance } from 'src/app/class/boquette/rotance';
 import { RotanceService } from 'src/app/services/boquette/rotance.service';
@@ -34,5 +35,4 @@ export class BoquetteSingleComponent implements OnInit {
       }
     });
   }
-
 }

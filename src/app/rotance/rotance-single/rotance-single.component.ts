@@ -12,6 +12,7 @@ export class RotanceSingleComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
 }

@@ -1,7 +1,9 @@
 <ion-item class="border" *ngIf="singleBoquette">
   <ion-label>
-    <h2>{{ singleBoquette.name }}</h2>
-    <h3>{{ singleBoquette.respo }}</h3>
+    <div routerLink="/boquette/{{ singleBoquette.getId() }}">
+      <h2>{{ singleBoquette.name }}</h2>
+      <p>{{ singleBoquette.respo }}</p>
+    </div>
     <div *ngIf="nextRotance">
       <p>Prochaine rotance :</p>
       <app-rotance-single [singleRotance]="nextRotance"></app-rotance-single>

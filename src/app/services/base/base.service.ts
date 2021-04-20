@@ -9,18 +9,19 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export abstract class BaseService<T extends Base> {
-  protected baseUrl : string;
-  protected objectList : T[];
-  public objectListObs : Subject<T[]> = new Subject<T[]>();
+  protected baseUrl: string;
+  protected objectList: T[];
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  public objectListObs: Subject<T[]> = new Subject<T[]>();
 
-  constructor(protected http : HttpClient) { }
+  constructor(protected http: HttpClient) { }
 
-  public fetch() : void {
+  public fetch(): void {
     this.http.get<ServeurResponse>(this.baseUrl).subscribe(
       value =>{
         this.objectList = [];
         if(value.status==='success'){
-          for(let info of value.result){
+          for(const info of value.result){
             this.objectList.push(this.jsonToObjectConvert(info));
           }
         }
@@ -29,17 +30,17 @@ export abstract class BaseService<T extends Base> {
     )
   }
 
-  public getCondition(condition : string,param='*', opts='*') : Observable<T[] | Error>{
+  public getCondition(condition: string,param='*', opts='*') : Observable<T[] | Error>{
     return this.http.post<ServeurResponse>(this.baseUrl+`/condition`,
     {
-      condition : condition,
-      param : param,
+      condition,
+      param,
       option : opts
     }).pipe(
       map(value =>{
         if(value.status==='success'){
-          let result : T[] = [];
-          for(let info of value.result){
+          let result: T[] = [];
+          for(const info of value.result){
             result.push(this.jsonToObjectConvert(info));
           }
           return result;
@@ -50,7 +51,7 @@ export abstract class BaseService<T extends Base> {
     )
   }
 
-  public getById(id : number) : Observable<T | Error>{
+  public getById(id: number): Observable<T | Error>{
     return this.http.get<ServeurResponse>(this.baseUrl+`/id/${id}`).pipe(
       map(value =>{
         if(value.status==='success'){
@@ -62,7 +63,7 @@ export abstract class BaseService<T extends Base> {
     )
   }
 
-  public getByKey(key : any) : Observable<T | Error>{
+  public getByKey(key: any): Observable<T | Error>{
     return this.http.get<ServeurResponse>(this.baseUrl+`/key/${key}`).pipe(
       map(value =>{
         if(value.status==='success'){
@@ -74,7 +75,7 @@ export abstract class BaseService<T extends Base> {
     )
   }
 
-  public createNew(newObject : T) : Observable< T | Error>{
+  public createNew(newObject: T) : Observable< T | Error>{
     return this.http.post<ServeurResponse>(this.baseUrl,this.objectToJsonConvert(newObject))
     .pipe(
       map(value =>{
@@ -110,12 +111,12 @@ export abstract class BaseService<T extends Base> {
           return new Error(value.result);
         }
       })
-    )
+    );
   }
 
-  public searchOn(id : number) : T{
+  public searchOn(id: number): T{
     let i = 0;
-    while(i<this.objectList.length && id!=this.objectList[i].getId()){
+    while(i<this.objectList.length && id!==this.objectList[i].getId()){
       i++;
     }
     if(i<this.objectList.length){

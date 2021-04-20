@@ -1,3 +1,15 @@
 h2,h3{
     font-weight: bolder;
 }
+
+ion-item{
+    border-left: 4px white solid;
+}
+
+.ended{
+    border-color: red;
+}
+
+.going{
+    border-color: green;
+}

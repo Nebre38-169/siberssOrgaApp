@@ -4,17 +4,21 @@ import { BoquetteSingleComponent } from './boquette-single/boquette-single.compo
 import { IonicModule } from '@ionic/angular';
 import { RotanceModule } from '../rotance/rotance.module';
 import { PipeModule } from '../pipe/pipe.module';
+import { BoquetteRoutingModule } from './boquette-routing.module';
+import { BoquetteSinglePageComponent } from './boquette-single-page/boquette-single-page.component';
 
 
 
 @NgModule({
   declarations: [
-    BoquetteSingleComponent
+    BoquetteSingleComponent,
+    BoquetteSinglePageComponent
   ],
   imports: [
     CommonModule,
     IonicModule.forRoot(),
     PipeModule.forRoot(),
+    BoquetteRoutingModule,
     RotanceModule
   ],
   exports : [

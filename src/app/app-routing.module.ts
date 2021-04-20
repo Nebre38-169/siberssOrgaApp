@@ -7,10 +7,19 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
+    path : 'boquette',
+    loadChildren: () => import('./boquette/boquette.module').then( m => m.BoquetteModule)
+  },
+  {
+    path : 'rotance',
+    loadChildren: () => import('./rotance/rotance.module').then( m => m.RotanceModule)
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
   }
+
 ];
 
 @NgModule({

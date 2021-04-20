@@ -1,0 +1,54 @@
+<ion-header *ngIf="b">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ b.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="b">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col sizeLg="8">
+        <ion-grid>
+          <ion-row class="ion-justify-content-center">
+            <ion-col sizeLg="6">
+              <p>Date de création: {{ b.getCreationdate() | dateFr:'date'}}</p>
+            </ion-col>
+            <ion-col sizeLg="6">
+              <p>Date de mise à jour: {{ b.getUpdateDate() | dateFr:'date'}}</p>
+            </ion-col>
+          </ion-row>
+          <hr class="inside">
+          <ion-row class="ion-justify-content-center">
+            <ion-col sizeLg="12">
+              <h3>Description</h3>
+              <p>{{ b.description }}</p>
+              <hr>
+            </ion-col>
+          </ion-row>
+          <hr class="inside">
+          <ion-row class="ion-justify-content-center">
+            <ion-col sizeLg="12">
+              <h3>Respo</h3>
+              <p>{{ b.respo }}</p>
+              <hr>
+            </ion-col>
+          </ion-row>
+          <hr class="inside">
+          <ion-row class="ion-justify-content-center">
+            <ion-col sizeLg="12">
+              <h3>Rotance</h3>
+              <ion-list *ngIf="rotanceList && rotanceList.length>0">
+                <app-rotance-single *ngFor="let r of rotanceList" [singleRotance]="r"></app-rotance-single>
+              </ion-list>
+              <p *ngIf="!rotanceList || rotanceList.length<1">Il n'y pas eu de rotance pour l'instant</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>
