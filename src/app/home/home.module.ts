@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home-single-page/home.page';
 import { BoquetteModule } from '../boquette/boquette.module';
+import { PipeModule } from '../pipe/pipe.module';
 
 @NgModule({
   imports: [

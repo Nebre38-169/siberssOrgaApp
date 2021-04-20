@@ -1,7 +1,8 @@
 <ion-item *ngIf="singleRotance">
   <ion-label>
-    <h2>{{ singleRotance.date | date }}</h2>
+    <h2>{{ singleRotance.date | dateFr:'full' }}</h2>
     <h3>{{ singleRotance.lieu }}</h3>
-    <h3>{{ singleRotance.commencer }}</h3>
+    <h3>Commencer : {{ singleRotance.commencer | booleanFr}}</h3>
+    <h3>Fini : {{ singleRotance.fini | booleanFr}}</h3>
   </ion-label>
 </ion-item>

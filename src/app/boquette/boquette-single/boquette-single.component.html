@@ -1,6 +1,11 @@
-<ion-item *ngIf="singleBoquette">
+<ion-item class="border" *ngIf="singleBoquette">
   <ion-label>
     <h2>{{ singleBoquette.name }}</h2>
     <h3>{{ singleBoquette.respo }}</h3>
+    <div *ngIf="nextRotance">
+      <p>Prochaine rotance :</p>
+      <app-rotance-single [singleRotance]="nextRotance"></app-rotance-single>
+    </div>
   </ion-label>
+  <ion-note slot="end">Ouverte : {{ open | booleanFr}}</ion-note>
 </ion-item>

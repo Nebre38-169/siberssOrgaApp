@@ -12,7 +12,7 @@ export class BoquetteSingleComponent implements OnInit {
 
   @Input() singleBoquette: Boquette;
   public nextRotance: Rotance;
-
+  public open = false;
   constructor(
     private rotance: RotanceService,
   ) { }
@@ -24,6 +24,13 @@ export class BoquetteSingleComponent implements OnInit {
         console.log(value);
       } else {
         this.nextRotance = value;
+        if(this.nextRotance){
+          if(this.nextRotance.commencer && !this.nextRotance.fini){
+            this.open = true;
+          } else {
+            this.open = false;
+          }
+        }
       }
     });
   }
