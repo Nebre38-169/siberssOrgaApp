@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home-single-page/home.page';
+import { BoquetteModule } from '../boquette/boquette.module';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { HomePage } from './home-single-page/home.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
+    BoquetteModule,
     HomePageRoutingModule
   ],
   declarations: [

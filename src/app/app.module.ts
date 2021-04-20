@@ -12,6 +12,7 @@ import { RotanceService } from './services/boquette/rotance.service';
 import { ChannelService } from './services/channel/channel.service';
 import { PostsService } from './services/channel/posts.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     IonicModule.forRoot(),
     ReactiveFormsModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [

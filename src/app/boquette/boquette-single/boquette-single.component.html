@@ -1,3 +1,6 @@
-<p>
-  boquette-single works!
-</p>
+<ion-item *ngIf="singleBoquette">
+  <ion-label>
+    <h2>{{ singleBoquette.name }}</h2>
+    <h3>{{ singleBoquette.respo }}</h3>
+  </ion-label>
+</ion-item>

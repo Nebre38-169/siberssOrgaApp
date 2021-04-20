@@ -5,6 +5,7 @@ import { Channel } from 'src/app/class/channel/channel';
 import { Posts } from 'src/app/class/channel/posts';
 import { BoquetteService } from 'src/app/services/boquette/boquette.service';
 import { ChannelService } from 'src/app/services/channel/channel.service';
+import { PostsService } from 'src/app/services/channel/posts.service';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,7 @@ export class HomePage implements OnInit,OnDestroy {
   constructor(
     private boquette: BoquetteService,
     private channel: ChannelService,
-    private posts: Posts
+    private posts: PostsService
   ) { }
 
   ngOnDestroy(): void {

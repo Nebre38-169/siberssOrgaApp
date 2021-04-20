@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Boquette } from 'src/app/class/boquette/boquette';
+import { Rotance } from 'src/app/class/boquette/rotance';
+import { RotanceService } from 'src/app/services/boquette/rotance.service';
 
 @Component({
   selector: 'app-boquette-single',
@@ -9,9 +11,21 @@ import { Boquette } from 'src/app/class/boquette/boquette';
 export class BoquetteSingleComponent implements OnInit {
 
   @Input() singleBoquette: Boquette;
+  public nextRotance: Rotance;
 
-  constructor() { }
+  constructor(
+    private rotance: RotanceService,
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.rotance.getNextRotance(this.singleBoquette)
+    .subscribe(value =>{
+      if(value instanceof Error){
+        console.log(value);
+      } else {
+        this.nextRotance = value;
+      }
+    });
+  }
 
 }

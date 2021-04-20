@@ -5,5 +5,14 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-grid class="ion-align-items-center">
+    <ion-row class="ion-align-items-center">
+      <ion-col sizeLg="6" >
+        <h1>Boquettes :</h1>
+        <ion-list>
+          <app-boquette-single *ngFor="let b of boquetteList" [singleBoquette]="b"></app-boquette-single>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

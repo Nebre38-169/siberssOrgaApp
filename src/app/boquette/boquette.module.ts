@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BoquetteSingleComponent } from './boquette-single/boquette-single.component';
+import { IonicModule } from '@ionic/angular';
+import { RotanceModule } from '../rotance/rotance.module';
 
 
 
@@ -9,7 +11,9 @@ import { BoquetteSingleComponent } from './boquette-single/boquette-single.compo
     BoquetteSingleComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    IonicModule.forRoot(),
+    RotanceModule
   ],
   exports : [
     BoquetteSingleComponent
