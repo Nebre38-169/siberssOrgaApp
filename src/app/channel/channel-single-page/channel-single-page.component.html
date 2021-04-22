@@ -1,0 +1,44 @@
+<ion-header *ngIf="c">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ c.nom }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="c">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col sizeLg="8">
+        <ion-grid>
+          <ion-row class="ion-justify-content-center">
+            <ion-col sizeLg="6">
+              <small>Date de création: {{ c.getCreationdate() | dateFr:'date'}}</small>
+            </ion-col>
+            <ion-col sizeLg="6">
+              <small>Date de mise à jour: {{ c.getUpdateDate() | dateFr:'date'}}</small>
+            </ion-col>
+          </ion-row>
+          <hr class="inside">
+          <ion-row class="ion-justify-content-center"> 
+            <ion-col sizeLg="8">
+              <h3>Boquettes : </h3>
+              <p><a *ngFor="let b of boquetteList" routerLink="/boquette/{{ b.getId() }}">{{ b.name }},</a></p>
+            </ion-col>
+          </ion-row>
+          <hr class="inside">
+          <ion-row class="ion-justify-content-center">
+            <ion-col sizeLg="8">
+              <h3>Messages : </h3>
+              <ion-list *ngIf="postList && postList.length>0">
+                <app-posts-single *ngFor="let p of postList" [singlePost]="p"></app-posts-single>
+              </ion-list>
+              <p *ngIf="!postList ||postList.length<1">Il n'y pas de message pour l'instant</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

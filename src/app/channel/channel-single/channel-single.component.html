@@ -1,0 +1,8 @@
+<ion-item class="border" *ngIf="singleChannel" routerLink="/channel/{{ singleChannel.getId() }}">
+  <ion-label>
+    <h3>{{ singleChannel.nom }}</h3>
+    <h4>Dernier message :</h4>
+    <app-posts-single *ngIf="lastPost" [singlePost]="lastPost"></app-posts-single>
+    <p *ngIf="!lastPost">Il n'y pas de message pour l'instant</p>
+  </ion-label>
+</ion-item>

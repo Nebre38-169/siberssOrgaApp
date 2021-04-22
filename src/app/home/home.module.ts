@@ -9,6 +9,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home-single-page/home.page';
 import { BoquetteModule } from '../boquette/boquette.module';
 import { PipeModule } from '../pipe/pipe.module';
+import { ChannelModule } from '../channel/channel.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { PipeModule } from '../pipe/pipe.module';
     ReactiveFormsModule,
     IonicModule,
     BoquetteModule,
+    ChannelModule,
     HomePageRoutingModule
   ],
   declarations: [

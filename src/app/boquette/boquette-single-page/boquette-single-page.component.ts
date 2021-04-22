@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Boquette } from 'src/app/class/boquette/boquette';
 import { Rotance } from 'src/app/class/boquette/rotance';
+import { Posts } from 'src/app/class/channel/posts';
 import { BoquetteService } from 'src/app/services/boquette/boquette.service';
 import { RotanceService } from 'src/app/services/boquette/rotance.service';
+import { PostsService } from 'src/app/services/channel/posts.service';
 
 @Component({
   selector: 'app-boquette-single-page',
@@ -13,9 +15,11 @@ import { RotanceService } from 'src/app/services/boquette/rotance.service';
 export class BoquetteSinglePageComponent implements OnInit {
   public b: Boquette;
   public rotanceList: Rotance[];
+  public postsList: Posts[];
   constructor(
     private boquette: BoquetteService,
     private rotance: RotanceService,
+    private posts: PostsService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -34,6 +38,14 @@ export class BoquetteSinglePageComponent implements OnInit {
             console.log(res);
           }else{
             this.rotanceList = res;
+          }
+        });
+        this.posts.getByDependance(boquetteId,'auteur')
+        .subscribe(r =>{
+          if(r instanceof Error){
+            console.log(r);
+          } else{
+            this.postsList = r;
           }
         });
       }

@@ -14,10 +14,10 @@
         <ion-grid>
           <ion-row class="ion-justify-content-center">
             <ion-col sizeLg="6">
-              <p>Date de création: {{ b.getCreationdate() | dateFr:'date'}}</p>
+              <small>Date de création: {{ b.getCreationdate() | dateFr:'date'}}</small>
             </ion-col>
             <ion-col sizeLg="6">
-              <p>Date de mise à jour: {{ b.getUpdateDate() | dateFr:'date'}}</p>
+              <small>Date de mise à jour: {{ b.getUpdateDate() | dateFr:'date'}}</small>
             </ion-col>
           </ion-row>
           <hr class="inside">
@@ -44,6 +44,16 @@
                 <app-rotance-single *ngFor="let r of rotanceList" [singleRotance]="r"></app-rotance-single>
               </ion-list>
               <p *ngIf="!rotanceList || rotanceList.length<1">Il n'y pas eu de rotance pour l'instant</p>
+            </ion-col>
+          </ion-row>
+          <hr class="inside">
+          <ion-row class="ion-justify-content-center">
+            <ion-col sizeLg="12">
+              <h3>Message</h3>
+              <ion-list *ngIf="postsList && postsList.length>0">
+                <app-posts-single *ngFor="let r of postsList" [singlePost]="r"></app-posts-single>
+              </ion-list>
+              <p *ngIf="!postsList || postsList.length<1">Il n'y pas de message pour l'instant</p>
             </ion-col>
           </ion-row>
         </ion-grid>

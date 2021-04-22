@@ -1,0 +1,8 @@
+<ion-item *ngIf="singlePost">
+  <ion-label>
+    <h2>{{ singlePost.titre }}</h2>
+    <h3>{{ singlePost.auteur.name }}</h3>
+    <p>{{ singlePost.message }}</p>
+    <small>{{ singlePost.getCreationdate() | dateFr:'date'}}</small>
+  </ion-label>
+</ion-item>

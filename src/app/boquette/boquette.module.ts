@@ -6,6 +6,7 @@ import { RotanceModule } from '../rotance/rotance.module';
 import { PipeModule } from '../pipe/pipe.module';
 import { BoquetteRoutingModule } from './boquette-routing.module';
 import { BoquetteSinglePageComponent } from './boquette-single-page/boquette-single-page.component';
+import { PostsModule } from '../posts/posts.module';
 
 
 
@@ -19,7 +20,8 @@ import { BoquetteSinglePageComponent } from './boquette-single-page/boquette-sin
     IonicModule.forRoot(),
     PipeModule.forRoot(),
     BoquetteRoutingModule,
-    RotanceModule
+    RotanceModule,
+    PostsModule
   ],
   exports : [
     BoquetteSingleComponent
