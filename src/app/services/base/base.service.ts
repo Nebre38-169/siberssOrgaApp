@@ -27,10 +27,10 @@ export abstract class BaseService<T extends Base> {
         }
         this.update();
       }
-    )
+    );
   }
 
-  public getCondition(condition: string,param='*', opts='*') : Observable<T[] | Error>{
+  public getCondition(condition: string,param='*', opts='*'): Observable<T[] | Error>{
     return this.http.post<ServeurResponse>(this.baseUrl+`/condition`,
     {
       condition,
@@ -39,7 +39,7 @@ export abstract class BaseService<T extends Base> {
     }).pipe(
       map(value =>{
         if(value.status==='success'){
-          let result: T[] = [];
+          const result: T[] = [];
           for(const info of value.result){
             result.push(this.jsonToObjectConvert(info));
           }
@@ -48,7 +48,7 @@ export abstract class BaseService<T extends Base> {
           return new Error(value.result);
         }
       })
-    )
+    );
   }
 
   public getById(id: number): Observable<T | Error>{
@@ -60,7 +60,7 @@ export abstract class BaseService<T extends Base> {
           return new Error(value.result);
         }
       })
-    )
+    );
   }
 
   public getByKey(key: any): Observable<T | Error>{
@@ -72,10 +72,10 @@ export abstract class BaseService<T extends Base> {
           return new Error(value.result);
         }
       })
-    )
+    );
   }
 
-  public createNew(newObject: T) : Observable< T | Error>{
+  public createNew(newObject: T): Observable< T | Error>{
     return this.http.post<ServeurResponse>(this.baseUrl,this.objectToJsonConvert(newObject))
     .pipe(
       map(value =>{
@@ -86,10 +86,10 @@ export abstract class BaseService<T extends Base> {
           return new Error(value.result);
         }
       })
-    )
+    );
   }
 
-  public edit(updatedObject : T) : Observable<T | Error>{
+  public edit(updatedObject: T): Observable<T | Error>{
     return this.http.put<ServeurResponse>(this.baseUrl+`/${updatedObject.getId()}`,this.objectToJsonConvert(updatedObject))
     .pipe(
       map(value =>{
@@ -99,10 +99,10 @@ export abstract class BaseService<T extends Base> {
           return new Error(value.result);
         }
       })
-    )
+    );
   }
 
-  public delete(id : number) : Observable<boolean | Error>{
+  public delete(id: number): Observable<boolean | Error>{
     return this.http.delete<ServeurResponse>(this.baseUrl+`/${id}`).pipe(
       map(value =>{
         if(value.status==='success'){
@@ -126,11 +126,38 @@ export abstract class BaseService<T extends Base> {
     }
   }
 
+  public getDateStr(date: Date){
+    let d = `${date.getFullYear()}-`;
+    if(date.getMonth()+1<10){
+      d+=`0${date.getMonth()+1}`;
+    }else{
+      d+=`${date.getMonth()+1}`;
+    }
+    d+='-';
+    if(date.getDate()<10){
+      d+=`0${date.getDate()}`;
+    }else{
+      d+=`${date.getDate()}`;
+    }
+    let time = '';
+    if(date.getHours()<10){
+      time+=`0${date.getHours()}`;
+    }else{
+      time+=`${date.getHours()}`;
+    }
+    time+=':';
+    if(date.getMinutes()<10){
+      time+=`0${date.getMinutes()}`;
+    }else{
+      time+=`${date.getMinutes()}`;
+    }
+    return d+'T'+time;
+  }
+
   protected update(){
     this.objectListObs.next(this.objectList);
   }
 
-  public abstract jsonToObjectConvert(info : any) : T;
-  public abstract objectToJsonConvert(obj : T) : any; 
-
+  public abstract jsonToObjectConvert(info: any): T;
+  public abstract objectToJsonConvert(obj: T): any;
 }

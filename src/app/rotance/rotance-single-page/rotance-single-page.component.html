@@ -13,43 +13,63 @@
     <ion-row class="ion-justify-content-center">
       <ion-col sizeLg="8">
         <ion-grid>
-          <ion-row class="ion-justify-content-center" color="medium">
-            <ion-col sizeLg="6">
-              <p>Date de création: {{ r.getCreationdate() | dateFr:'full'}}</p>
-            </ion-col>
-            <ion-col sizeLg="6">
-              <p>Date de mise à jour: {{ r.getUpdateDate() | dateFr:'full'}}</p>
-            </ion-col>
-          </ion-row>
-          <hr class="inside">
           <ion-row class="ion-justify-content-center">
             <ion-col sizeLg="6">
-              <p>Lieu : {{ r.lieu }}</p>
+              <small>Date de création: {{ r.getCreationdate() | dateFr:'full'}}</small>
             </ion-col>
             <ion-col sizeLg="6">
-              <p>Date : {{ r.date | dateFr:'full'}}</p>
+              <small>Date de mise à jour: {{ r.getUpdateDate() | dateFr:'full'}}</small>
             </ion-col>
           </ion-row>
-          <hr class="inside">
           <ion-row class="ion-justify-content-center">
             <ion-col sizeLg="6">
-              <h3>Commencé : {{ r.commencer | booleanFr}}</h3>
+              <ion-item>
+                <p>Lieu : {{ r.lieu }}</p>
+              </ion-item>
             </ion-col>
             <ion-col sizeLg="6">
-              <h3>Fini : {{ r.fini | booleanFr}}</h3>
+              <ion-item>
+                <p>Date : {{ r.date | dateFr:'full'}}</p>
+              </ion-item>
             </ion-col>
           </ion-row>
-          <hr class="inside">
+          <ion-row class="ion-justify-content-center">
+            <ion-col sizeLg="6">
+              <ion-item>
+                <p>Commencé : {{ r.commencer | booleanFr}}</p>
+                <ion-buttons slot="end">
+                  <ion-button (click)="onStart()" [disabled]='r.commencer'>
+                    <ion-icon name="checkmark-outline"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-item>
+            </ion-col>
+            <ion-col sizeLg="6">
+              <ion-item>
+                  <p>Fini : {{ r.fini | booleanFr}}</p>
+                  <ion-buttons slot="end">
+                    <ion-button (click)="onEnd()" [disabled]='r.fini'>
+                      <ion-icon name="checkmark-outline"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+              </ion-item>
+            </ion-col>
+          </ion-row>
           <ion-row class="ion-justify-content-center">
             <ion-col sizeLg="12">
-              <h3>Information:</h3>
-              <p *ngIf="r.info && r.info.length>0" >{{ r.info }}</p>
-              <p *ngIf="!r.info || r.info.length<1">Il n'y a pas d'information</p>
+              <ion-item>
+                <p>Information: </p>
+                <p *ngIf="r.info && r.info.length>0" > {{ r.info }}</p>
+                <p *ngIf="!r.info || r.info.length<1"> Il n'y a pas d'information</p>
+              </ion-item>
             </ion-col>
           </ion-row>
+          <ion-buttons>
+            <ion-button color="primary" (click)="onEdit()" >Modifier</ion-button>
+            <ion-button color="danger">Supprimer</ion-button>
+          </ion-buttons>
         </ion-grid>
       </ion-col>
     </ion-row>
   </ion-grid>
-  
 </ion-content>

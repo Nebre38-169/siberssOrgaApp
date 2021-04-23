@@ -35,11 +35,12 @@ export class RotanceService extends BaseWithDependanceService<Rotance> {
     );
   }
   public objectToJsonConvert(obj: Rotance) {
+    console.log(this.getDateStr(obj.date));
     return {
       boquette : obj.boquette.getId(),
       lieu : obj.lieu,
       info : obj.info,
-      date : obj.date.toISOString(),
+      date : this.getDateStr(obj.date),
       commencer : (obj.commencer) ? 'Y' : 'N',
       fini : (obj.fini) ? 'Y' : 'N'
     };
