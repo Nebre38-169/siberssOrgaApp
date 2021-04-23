@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./channel/channel.module').then( m => m.ChannelModule)
   },
   {
+    path : 'auth',
+    loadChildren: () => import('./connexion/connexion.module').then( m => m.ConnexionModule)
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'

@@ -28,14 +28,16 @@ export class PostsService extends BaseWithDependanceService<Posts>{
       new Date(info.updateDate),
       info.titre,
       info.message,
-      this.boquette.searchOn(parseInt(info.auteur,10))
+      this.boquette.searchOn(parseInt(info.auteur,10)),
+      parseInt(info.channel,10)
     );
   }
   public objectToJsonConvert(obj: Posts) {
     return {
       titre : obj.titre,
       message : obj.message,
-      auteur : obj.auteur.getId()
+      auteur : obj.auteur.getId(),
+      channel: obj.channel
     };
   }
 

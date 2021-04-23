@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Connexion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-margin-top">
+      <ion-col sizeLg="6">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmitForm()">
+          <h1>Connexion</h1>
+          <ion-item>
+            <ion-label position="floating" for="boquette">Boquette</ion-label>
+            <ion-input type="text" id="boquette" formControlName="boquette"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating" for="password">Mot de passe</ion-label>
+            <ion-input type="password" id="password"  formControlName="password"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="errorMessage" color="danger">
+            <ion-label>La boquette ou le mot de passe utilisés ne sont pas bon.</ion-label>
+          </ion-item>
+          <ion-button type="submit" [disabled]="!loginForm.valid" >Se connecter</ion-button>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

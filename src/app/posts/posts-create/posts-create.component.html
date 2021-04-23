@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="onBack()" defaultHref="/boquette/{{ boquette.getId() }}"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="onSubmitForm()" [disabled]="newMessage.invalid"><ion-icon name="checkmark-outline"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Nouvelle rotance</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="newMessage" (ngSubmit)="onSubmitForm()">
+    <ion-item>
+      <ion-label position="floating" for="lieu">Titre</ion-label>
+      <ion-input type="text" id="titre" formControlName="titre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" for="message">Message</ion-label>
+      <ion-textarea id="message" formControlName="message"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Channel</ion-label>
+      <ion-select formControlName="channel">
+        <ion-select-option *ngFor="let c of channelList" [value]=c.getId()>{{ c.nom }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </form>
+</ion-content>

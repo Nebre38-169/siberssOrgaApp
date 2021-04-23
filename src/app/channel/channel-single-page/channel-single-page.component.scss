@@ -3,7 +3,7 @@ h2,h3{
 }
 
 ion-col{
-    background : var(--ion-toolbar-background, var(--ion-background-color, #fff));
+    background : var(--ion-item-background, var(--ion-background-color, #fff));
     border-radius: 5px;
 }
 
