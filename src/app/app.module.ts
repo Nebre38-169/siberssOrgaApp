@@ -13,10 +13,12 @@ import { ChannelService } from './services/channel/channel.service';
 import { PostsService } from './services/channel/posts.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorPageComponent
   ],
   entryComponents: [],
   imports: [

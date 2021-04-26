@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Boquette } from 'src/app/class/boquette/boquette';
@@ -14,8 +15,11 @@ import { BaseService } from '../base/base.service';
 export class ChannelService extends BaseService<Channel>{
   baseUrl = environment.baseUrl.base+environment.baseUrl.channel;
 
-  constructor(protected http: HttpClient) {
-    super(http);
+  constructor(
+    protected http: HttpClient,
+    protected router: Router
+  ) {
+    super(http,router);
    }
 
   public jsonToObjectConvert(info: any): Channel {
@@ -46,7 +50,11 @@ export class ChannelService extends BaseService<Channel>{
           }
           return r;
         } else {
-          return new Error(value.result);
+          if(value.result.includes('internal error')){
+            this.errorRedirect();
+          } else {
+            return new Error(value.result);
+          }
         }
       })
     );

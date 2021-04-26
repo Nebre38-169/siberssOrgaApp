@@ -1,5 +1,6 @@
 import { HttpClient, HttpClientJsonpModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Channel } from 'src/app/class/channel/channel';
@@ -15,9 +16,12 @@ import { BoquetteService } from '../boquette/boquette.service';
 })
 export class PostsService extends BaseWithDependanceService<Posts>{
   baseUrl = environment.baseUrl.base + environment.baseUrl.posts;
-  constructor(protected http: HttpClient,
-    private boquette: BoquetteService) {
-      super(http);
+  constructor(
+    protected http: HttpClient,
+    protected router: Router,
+    private boquette: BoquetteService
+  ) {
+      super(http,router);
       boquette.fetch();
     }
 
@@ -54,7 +58,11 @@ export class PostsService extends BaseWithDependanceService<Posts>{
             return null;
           }
         }else{
-          return new Error(value.result);
+          if(value.result.includes('internal error')){
+            this.errorRedirect();
+          } else {
+            return new Error(value.result);
+          }
         }
       })
     );

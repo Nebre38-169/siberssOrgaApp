@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path : 'auth',
     loadChildren: () => import('./connexion/connexion.module').then( m => m.ConnexionModule)
+  },
+  {
+    path : 'error',
+    component : ErrorPageComponent
   },
   {
     path: '',
