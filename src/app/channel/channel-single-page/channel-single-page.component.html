@@ -20,21 +20,23 @@
               <small>Date de mise à jour: {{ c.getUpdateDate() | dateFr:'date'}}</small>
             </ion-col>
           </ion-row>
-          <hr class="inside">
           <ion-row class="ion-justify-content-center"> 
             <ion-col sizeLg="12">
-              <h3>Boquettes : </h3>
+              <ion-item>
+                <ion-title><h3>Boquettes : </h3></ion-title>
+              </ion-item>
               <p><a *ngFor="let b of boquetteList" routerLink="/boquette/{{ b.getId() }}">{{ b.name }},</a></p>
             </ion-col>
           </ion-row>
-          <hr class="inside">
           <ion-row class="ion-justify-content-center">
             <ion-col sizeLg="12">
-              <h3>Messages : </h3>
-              <ion-list *ngIf="postList && postList.length>0">
-                <app-posts-single *ngFor="let p of postList" [singlePost]="p"></app-posts-single>
-              </ion-list>
-              <p *ngIf="!postList ||postList.length<1">Il n'y pas de message pour l'instant</p>
+              <ion-item>
+                <ion-title><h3>Messages : </h3></ion-title>
+              </ion-item>
+                <ion-list *ngIf="postList && postList.length>0">
+                  <app-posts-single *ngFor="let p of postList" [singlePost]="p"></app-posts-single>
+                </ion-list>
+                <p *ngIf="!postList ||postList.length<1">Il n'y pas de message pour l'instant</p>
             </ion-col>
           </ion-row>
         </ion-grid>

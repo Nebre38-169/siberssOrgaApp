@@ -20,25 +20,38 @@
               <small>Date de mise à jour: {{ b.getUpdateDate() | dateFr:'date'}}</small>
             </ion-col>
           </ion-row>
-          <hr class="inside">
-          <ion-row class="ion-justify-content-center">
-            <ion-col sizeLg="12">
-              <h3>Description</h3>
-              <p>{{ b.description }}</p>
-            </ion-col>
-          </ion-row>
-          <hr class="inside">
-          <ion-row class="ion-justify-content-center">
-            <ion-col sizeLg="12">
-              <h3>Respo</h3>
-              <p>{{ b.respo }}</p>
-            </ion-col>
-          </ion-row>
-          <hr class="inside">
           <ion-row class="ion-justify-content-center">
             <ion-col sizeLg="12">
               <ion-item>
-                <ion-buttons slot="end">
+                <ion-label>
+                  <ion-title>Description</ion-title>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-text>
+                    {{  b.description }}
+                  </ion-text>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-center"> <!--Respo-->
+            <ion-col sizeLg="12">
+              <ion-item>
+                <ion-label>
+                  <ion-title>Respo</ion-title>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-text>
+                  {{ b.respo }}
+                </ion-text>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-center"> <!--Rotance-->
+            <ion-col sizeLg="12">
+              <ion-item>
+                <ion-buttons slot="end" *ngIf="ownerShip">
                   <ion-button (click)="onAddRotance()" ><ion-icon name="add-outline"></ion-icon></ion-button>
                 </ion-buttons>
                 <ion-title>Rotance</ion-title>
@@ -53,11 +66,10 @@
               </ion-item>
             </ion-col>
           </ion-row>
-          <hr class="inside">
-          <ion-row class="ion-justify-content-center">
+          <ion-row class="ion-justify-content-center"> <!--Post-->
             <ion-col sizeLg="12">
               <ion-item>
-                <ion-buttons slot="end">
+                <ion-buttons slot="end" *ngIf="ownerShip">
                   <ion-button (click)="onAddMessage()" ><ion-icon name="add-outline"></ion-icon></ion-button>
                 </ion-buttons>
                 <ion-title>Message</ion-title>

@@ -151,7 +151,8 @@ export abstract class BaseService<T extends Base> {
     }else{
       time+=`${date.getMinutes()}`;
     }
-    return d+'T'+time;
+    time+=':0';
+    return d+' '+time;
   }
 
   protected update(){

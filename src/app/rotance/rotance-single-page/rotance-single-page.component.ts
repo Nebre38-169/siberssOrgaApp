@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController, ModalController } from '@ionic/angular';
 import { Boquette } from 'src/app/class/boquette/boquette';
 import { Rotance } from 'src/app/class/boquette/rotance';
 import { BoquetteService } from 'src/app/services/boquette/boquette.service';
@@ -19,7 +19,9 @@ export class RotanceSinglePageComponent implements OnInit {
   constructor(
     private rotance: RotanceService,
     private modal: ModalController,
-    private route: ActivatedRoute
+    private alert: AlertController,
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -78,6 +80,34 @@ export class RotanceSinglePageComponent implements OnInit {
         this.b = this.r.boquette;
       }
     });
+  }
+
+  async onDelete(){
+    const a = await this.alert.create({
+      header : 'Supprission',
+      message : `Voulez vous vraiment supprimre la rotance ?`,
+      buttons : [
+        {
+          text : 'Annuler',
+          role : 'cancel',
+          cssClass : 'primary'
+        },
+        {
+          text: 'Oui',
+          handler: () =>{
+            this.rotance.delete(this.r.getId())
+            .subscribe(value =>{
+              if(value instanceof Error){
+                console.log(value);
+              } else {
+                this.router.navigate(['boquette',this.b.getId()]);
+              }
+            });
+          }
+        }
+      ]
+    });
+    await a.present();
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ViewWillEnter } from '@ionic/angular';
 import { Boquette } from 'src/app/class/boquette/boquette';
 import { Rotance } from 'src/app/class/boquette/rotance';
 import { Posts } from 'src/app/class/channel/posts';
@@ -16,7 +16,7 @@ import { AuthService } from 'src/app/services/other/auth.service';
   templateUrl: './boquette-single-page.component.html',
   styleUrls: ['./boquette-single-page.component.scss'],
 })
-export class BoquetteSinglePageComponent implements OnInit {
+export class BoquetteSinglePageComponent implements OnInit,ViewWillEnter {
   public b: Boquette;
   public rotanceList: Rotance[];
   public postsList: Posts[];
@@ -32,7 +32,7 @@ export class BoquetteSinglePageComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  ngOnInit() {
+  ionViewWillEnter(): void {
     const boquetteId = this.route.snapshot.params.id;
     this.boquette.getById(boquetteId)
     .subscribe(value =>{
@@ -59,6 +59,9 @@ export class BoquetteSinglePageComponent implements OnInit {
         });
       }
     });
+  }
+
+  ngOnInit() {
   }
 
   async onAddRotance(){
