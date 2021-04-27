@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Boquette } from 'src/app/class/boquette/boquette';
 import { Channel } from 'src/app/class/channel/channel';
+import { Header } from 'src/app/class/header/header';
 import { ServeurResponse } from 'src/app/class/serveur-response/serveur-response';
 import { environment } from 'src/environments/environment';
 import { BaseService } from '../base/base.service';
@@ -40,7 +41,8 @@ export class ChannelService extends BaseService<Channel>{
 
   public getChannelOf(b: Boquette): Observable<Channel[] | Error>{
     return this.http.get<ServeurResponse>(
-      this.baseUrl+`/of/${b.getId()}`
+      this.baseUrl+`/of/${b.getId()}`,
+      { headers : Header.getHeader()}
     ).pipe(
       map(value =>{
         if(value.status==='success'){

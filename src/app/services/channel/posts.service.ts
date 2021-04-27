@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Channel } from 'src/app/class/channel/channel';
 import { Posts } from 'src/app/class/channel/posts';
+import { Header } from 'src/app/class/header/header';
 import { ServeurResponse } from 'src/app/class/serveur-response/serveur-response';
 import { environment } from 'src/environments/environment';
 import { BaseWithDependanceService } from '../base/base-with-dependance.service';
@@ -47,7 +48,8 @@ export class PostsService extends BaseWithDependanceService<Posts>{
 
   public getLastPosts(c: Channel): Observable<Posts | Error>{
     return this.http.get<ServeurResponse>(
-      this.baseUrl+`/last/${c.getId()}`
+      this.baseUrl+`/last/${c.getId()}`,
+      { headers : Header.getHeader()}
     ).pipe(
       map(value =>{
         console.log(value);

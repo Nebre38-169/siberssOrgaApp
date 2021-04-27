@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Base } from 'src/app/class/base/base';
 import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { Header } from 'src/app/class/header/header';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export abstract class BaseService<T extends Base> {
   ) { }
 
   public fetch(): void {
-    this.http.get<ServeurResponse>(this.baseUrl).subscribe(
+    this.http.get<ServeurResponse>(this.baseUrl,{ headers : Header.getHeader()}).subscribe(
       value =>{
         this.objectList = [];
         if(value.status==='success'){
@@ -44,7 +45,11 @@ export abstract class BaseService<T extends Base> {
       condition,
       param,
       option : opts
-    }).pipe(
+    },
+    {
+      headers : Header.getHeader()
+    }
+    ).pipe(
       map(value =>{
         if(value.status==='success'){
           const result: T[] = [];
@@ -64,7 +69,7 @@ export abstract class BaseService<T extends Base> {
   }
 
   public getById(id: number): Observable<T | Error>{
-    return this.http.get<ServeurResponse>(this.baseUrl+`/id/${id}`).pipe(
+    return this.http.get<ServeurResponse>(this.baseUrl+`/id/${id}`,{ headers : Header.getHeader()}).pipe(
       map(value =>{
         if(value.status==='success'){
           return this.jsonToObjectConvert(value.result);
@@ -80,7 +85,7 @@ export abstract class BaseService<T extends Base> {
   }
 
   public getByKey(key: any): Observable<T | Error>{
-    return this.http.get<ServeurResponse>(this.baseUrl+`/key/${key}`).pipe(
+    return this.http.get<ServeurResponse>(this.baseUrl+`/key/${key}`,{ headers : Header.getHeader()}).pipe(
       map(value =>{
         if(value.status==='success'){
           return this.jsonToObjectConvert(value.result);
@@ -96,7 +101,10 @@ export abstract class BaseService<T extends Base> {
   }
 
   public createNew(newObject: T): Observable< T | Error>{
-    return this.http.post<ServeurResponse>(this.baseUrl,this.objectToJsonConvert(newObject))
+    return this.http.post<ServeurResponse>(
+      this.baseUrl,this.objectToJsonConvert(newObject),
+      { headers : Header.getHeader()}
+    )
     .pipe(
       map(value =>{
         if(value.status==='success'){
@@ -114,7 +122,11 @@ export abstract class BaseService<T extends Base> {
   }
 
   public edit(updatedObject: T): Observable<T | Error>{
-    return this.http.put<ServeurResponse>(this.baseUrl+`/${updatedObject.getId()}`,this.objectToJsonConvert(updatedObject))
+    return this.http.put<ServeurResponse>(
+      this.baseUrl+`/${updatedObject.getId()}`,
+      this.objectToJsonConvert(updatedObject),
+      { headers : Header.getHeader()}
+    )
     .pipe(
       map(value =>{
         if(value.status==='success'){
@@ -131,7 +143,7 @@ export abstract class BaseService<T extends Base> {
   }
 
   public delete(id: number): Observable<boolean | Error>{
-    return this.http.delete<ServeurResponse>(this.baseUrl+`/${id}`).pipe(
+    return this.http.delete<ServeurResponse>(this.baseUrl+`/${id}`,{ headers : Header.getHeader()}).pipe(
       map(value =>{
         if(value.status==='success'){
           return true;
