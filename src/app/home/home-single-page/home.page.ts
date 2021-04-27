@@ -19,6 +19,9 @@ export class HomePage implements OnInit,OnDestroy,ViewWillEnter {
   public boquetteList: Boquette[];
   public channelList: Channel[];
   public connected: boolean;
+  public boquetteLoading = true;
+  public channelLoading = true;
+
   private boquetteSub: Subscription;
   private channelSub: Subscription;
   private authSub: Subscription;
@@ -39,10 +42,12 @@ export class HomePage implements OnInit,OnDestroy,ViewWillEnter {
     this.boquetteSub = this.boquette.objectListObs
     .subscribe(value =>{
       this.boquetteList = value;
+      this.boquetteLoading = false;
     });
     this.channelSub = this.channel.objectListObs
     .subscribe(value =>{
       this.channelList = value;
+      this.channelLoading = false;
     });
     this.authSub = this.auth.admin
     .subscribe(value =>{

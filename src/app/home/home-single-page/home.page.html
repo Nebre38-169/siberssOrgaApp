@@ -13,21 +13,23 @@
     <ion-row class="ion-justify-content-center">
       <ion-col sizeLg="8" >
         <h1>Boquettes</h1>
-        <ion-list>
+        <ion-list *ngIf="!boquetteLoading">
           <div *ngFor="let b of boquetteList">
             <app-boquette-single [singleBoquette]="b"></app-boquette-single>
           </div>
         </ion-list>
+        <ion-spinner *ngIf="boquetteLoading"></ion-spinner>
       </ion-col>
     </ion-row>
     <ion-row class="ion-justify-content-center">
       <ion-col sizeLg="8">
         <h1>Channel</h1>
-        <ion-list>
+        <ion-list *ngIf="!channelLoading" >
           <div *ngFor="let c of channelList">
             <app-channel-single [singleChannel]="c"></app-channel-single>
           </div>
         </ion-list>
+        <ion-spinner *ngIf="channelLoading"></ion-spinner>
       </ion-col>
     </ion-row>
   </ion-grid>

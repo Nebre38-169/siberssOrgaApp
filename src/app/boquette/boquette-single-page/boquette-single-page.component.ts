@@ -21,6 +21,8 @@ export class BoquetteSinglePageComponent implements OnInit,ViewWillEnter {
   public rotanceList: Rotance[];
   public postsList: Posts[];
   public ownerShip: boolean;
+  public rotanceLoading = true;
+  public messageLoading = true;
 
   constructor(
     private boquette: BoquetteService,
@@ -47,6 +49,7 @@ export class BoquetteSinglePageComponent implements OnInit,ViewWillEnter {
             console.log(res);
           }else{
             this.rotanceList = res;
+            this.rotanceLoading = false;
           }
         });
         this.posts.getByDependance(boquetteId,'auteur')
@@ -55,6 +58,7 @@ export class BoquetteSinglePageComponent implements OnInit,ViewWillEnter {
             console.log(r);
           }else{
             this.postsList = r;
+            this.messageLoading = false;
           }
         });
       }
@@ -74,12 +78,14 @@ export class BoquetteSinglePageComponent implements OnInit,ViewWillEnter {
     await m.present();
     const { data } = await m.onWillDismiss();
     if(data.done){
+      this.rotanceLoading = true;
       this.rotance.getByDependance(this.b.getId(),'boquette')
       .subscribe(value =>{
         if(value instanceof Error){
           console.log(value);
         }else{
           this.rotanceList = value;
+          this.rotanceLoading = false;
         }
       });
     }
@@ -95,12 +101,14 @@ export class BoquetteSinglePageComponent implements OnInit,ViewWillEnter {
     await m.present();
     const { data } = await m.onWillDismiss();
     if(data.done){
+      this.messageLoading = true;
       this.posts.getByDependance(this.b.getId(),'auteur')
         .subscribe(r =>{
           if(r instanceof Error){
             console.log(r);
           }else{
             this.postsList = r;
+            this.messageLoading = false;
           }
         });
     }

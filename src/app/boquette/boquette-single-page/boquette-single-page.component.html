@@ -57,12 +57,13 @@
                 <ion-title>Rotance</ion-title>
               </ion-item>
               <ion-item>
-                <ion-label>
+                <ion-label *ngIf="!rotanceLoading">
                   <ion-list *ngIf="rotanceList && rotanceList.length>0">
                     <app-rotance-single *ngFor="let r of rotanceList" [singleRotance]="r"></app-rotance-single>
                   </ion-list>
                   <p *ngIf="!rotanceList || rotanceList.length<1">Il n'y pas eu de rotance pour l'instant</p>
                 </ion-label>
+                <ion-spinner *ngIf="rotanceLoading"></ion-spinner>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -75,12 +76,13 @@
                 <ion-title>Message</ion-title>
               </ion-item>
               <ion-item>
-                <ion-label>
+                <ion-label *ngIf="!messageLoading">
                   <ion-list *ngIf="postsList && postsList.length>0">
                     <app-posts-single *ngFor="let r of postsList" [singlePost]="r"></app-posts-single>
                   </ion-list>
                   <p *ngIf="!postsList || postsList.length<1">Il n'y pas de message pour l'instant</p>
                 </ion-label>
+                <ion-spinner *ngIf="messageLoading"></ion-spinner>
               </ion-item>
             </ion-col>
           </ion-row>
